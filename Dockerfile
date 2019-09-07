@@ -1,10 +1,8 @@
-FROM ubuntu:trusty
+FROM  picoded/ubuntu-openjdk-8-jdk
 MAINTAINER Wurstmeister 
-RUN sudo add-apt-repository ppa:openjdk-r/ppa
-RUN apt-get update; apt-get install -y unzip openjdk-8-jre-headless wget supervisor docker.io openssh-server
-ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64/
+RUN apt-get update; apt-get install -y unzip wget supervisor docker.io openssh-server
 RUN echo 'root:wurstmeister' | chpasswd
 RUN mkdir /var/run/sshd
 RUN sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/' /etc/ssh/sshd_config
-
+CMD java -version
 EXPOSE 22
